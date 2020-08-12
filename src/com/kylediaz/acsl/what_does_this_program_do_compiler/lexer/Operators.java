@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Operators {
+class Operators {
 
     // I'm sorry for this :)
     private final static Map<String, TokenType> STRING_TOKEN_TYPE_MAP = new HashMap<>();

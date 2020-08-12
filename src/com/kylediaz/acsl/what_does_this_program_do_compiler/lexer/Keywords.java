@@ -2,7 +2,7 @@ package com.kylediaz.acsl.what_does_this_program_do_compiler.lexer;
 
 import java.util.Set;
 
-public final class Keywords {
+final class Keywords {
 
     private final static Set<String> KEYWORDS = Set.of("input", "output",
             "if", "then", "end",
