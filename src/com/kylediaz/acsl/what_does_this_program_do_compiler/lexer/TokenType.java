@@ -2,7 +2,6 @@ package com.kylediaz.acsl.what_does_this_program_do_compiler.lexer;
 
 public enum TokenType {
     END_OF_FILE,
-    END_STATEMENT,
     LITERAL,
     ID,
     KEYWORD,

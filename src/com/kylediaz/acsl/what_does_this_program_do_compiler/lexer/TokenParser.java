@@ -19,10 +19,7 @@ class TokenParser {
 
         Token output;
 
-        if (currentCharacterIsEndOfStatement()) {
-            output = new Token(TokenType.END_STATEMENT);
-            index++;
-        } else if (currentCharacterIsDigit()) {
+        if (currentCharacterIsDigit()) {
             output = new Token(TokenType.LITERAL, scanForInteger());
         } else if (currentCharacterIsLetter()) {
             String word = scanForWord();
@@ -100,10 +97,6 @@ class TokenParser {
     private boolean currentCharacterIsWhitespace() {
         char currentChar = text.charAt(index);
         return currentChar != '\n' && Character.isWhitespace(currentChar);
-    }
-
-    private boolean currentCharacterIsEndOfStatement() {
-        return !atEndOfText() && text.charAt(index) == '\n';
     }
 
     private boolean currentCharacterIsDigit() {
