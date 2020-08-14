@@ -23,10 +23,11 @@ class TokenParser {
             output = new Token(TokenType.LITERAL, scanForInteger());
         } else if (currentCharacterIsLetter()) {
             String word = scanForWord();
-            if (Keywords.values().contains(word)) {
-                output = new Token(TokenType.KEYWORD, word);
-            } else {
+            Keyword keywordParse = attemptToCastToKeyword(word);
+            if (keywordParse == null) {
                 output = new Token(TokenType.ID, word);
+            } else {
+                output = new Token(TokenType.KEYWORD, keywordParse);
             }
         } else if (text.charAt(index) == ',') {
             output = new Token(TokenType.COMMA);
@@ -46,7 +47,7 @@ class TokenParser {
             if (lookupAttempt != null) {
                 output = new Token(lookupAttempt);
             } else {
-                throw new RuntimeException("Unable to find token");
+                throw new LexerException("Unable to find token");
             }
         }
 
@@ -91,6 +92,16 @@ class TokenParser {
         if (outputString.isBlank())
             throw new RuntimeException("Invalid location for operator");
         return outputString;
+    }
+
+
+    private Keyword attemptToCastToKeyword(String s) {
+        s = s.toUpperCase();
+        try {
+            return Keyword.valueOf(s);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
 
